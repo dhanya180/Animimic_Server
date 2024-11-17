@@ -213,7 +213,7 @@ server.post('/search-users',(req,res)=>{
 
 
 
-server.post('/create-blog',(req,res)=>{
+server.post('/create-blog',async(req,res)=>{
 
    // console.log(req.body)
     //return res.json(req.body)
@@ -258,7 +258,7 @@ server.post('/create-blog',(req,res)=>{
 
     if(id){
 
-        Blog.findOneAndUpdate({blog_id},{title,des,banner,content,tags,draft:draft ? draft:false})
+        await Blog.findOneAndUpdate({blog_id},{title,des,banner,content,tags,draft:draft ? draft:false})
         .then(()=>{
             return res.status(200).json({id:blog_id});
         })
@@ -272,7 +272,7 @@ server.post('/create-blog',(req,res)=>{
         })
     
     
-        blog.save().then(async blog=>{
+        await blog.save().then(async blog=>{
             let increamentVal =draft ? 0 :1;
             await User.findOneAndUpdate({id:authorId},{$inc : {"account_info.total_posts":increamentVal},$push :{"blogs":blog._id}})
             .then(user=>{
