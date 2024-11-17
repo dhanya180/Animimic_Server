@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const Post = require('../models/Post');
 const router = express.Router();
-const Comment = require('../models/comment'); // Adjust path based on your file structure
+const Comment = require('../models/Comment'); // Adjust path based on your file structure
 
 
 // Fetch all blogs
