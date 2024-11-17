@@ -325,7 +325,7 @@ server.post('/like-blog',(req,res)=>{
             let like=new Notification({
                 type:"like",
                 blog:_id,
-                notification_fo:blog.author,
+                notification_for:blog.author,
                 user:user_id
             })
             like.save().then(notification=>{
@@ -333,7 +333,7 @@ server.post('/like-blog',(req,res)=>{
             })
         }
         else{
-            Notification.findOneAndUpdate({user:user_id,blog:_id,type:"like"}) 
+            Notification.findOneAndDelete({user:user_id,blog:_id,type:"like"}) 
             .then(data=>{
                 return res.status(200).json({liked_by_user:false});
             })
@@ -346,10 +346,10 @@ server.post('/like-blog',(req,res)=>{
 
 server.post("/isliked-by-user",(req,res)=>{
     let {user_id,_id}=req.body;
-    Notification.exists({user:user_id,type:"like,blog:_id"}).then(result=>{
+    Notification.exists({user:user_id,type:"like",blog:_id}).then(result=>{
         return res.status(200).json({result})
     }).catch(err=>{
-        return res.status(500).json({err:err,message})
+        return res.status(500).json({err:err.message})
     })
 })
 
