@@ -17,7 +17,7 @@ const Blog = require('./Schema/Blog');
 const User=require('./Schema/users');
 const Notification=require('./Schema/Notification');
 const server = express();
-const PORT = process.env.port
+const PORT = 5000
 //limiting the size to 50megabytes
 server.use(express.urlencoded({ extended: true ,limit:'50mb' })); 
 server.use(express.json({limit:'50mb'}));
