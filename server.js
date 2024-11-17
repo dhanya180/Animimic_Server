@@ -12,7 +12,7 @@ let nanoid;
 (async () => {
     nanoid = (await import('nanoid')).nanoid;
 })();
-const Forum=require('./Schema/forum');
+//const Forum=require('./Schema/forum');
 const Blog = require('./Schema/Blog');
 const User=require('./Schema/users');
 const Notification=require('./Schema/Notification');
